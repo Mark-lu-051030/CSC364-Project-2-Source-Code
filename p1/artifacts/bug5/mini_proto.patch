@@ -1,0 +1,13 @@
+--- mini_proto.c	2025-11-24 13:15:53.886228543 -0500
++++ bug_fix.c	2025-11-24 13:23:16.712438495 -0500
+@@ -39,6 +39,10 @@
+ 
+     size_t space = rec->score_count * 2;
+     rec->scores = malloc(space);
++    if (!rec->scores) {
++        free(rec);
++        return 0;
++    }
+     memcpy(rec->scores, buf + off, space);
+     off += space;
+ 

@@ -1,0 +1,11 @@
+--- mini_proto.c	2025-11-24 12:07:41.965619133 -0500
++++ bug_fix.c	2025-11-24 12:08:34.581509909 -0500
+@@ -26,6 +26,8 @@
+     size_t off = 0;
+     uint8_t name_len = buf[off++];
+ 
++    if (name_len >= MAX_NAME) return 0;
++
+     record_t *rec = malloc(sizeof(record_t));
+     if (!rec) return 0;
+ 

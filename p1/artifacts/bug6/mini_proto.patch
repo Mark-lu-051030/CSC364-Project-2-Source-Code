@@ -1,0 +1,11 @@
+--- mini_proto.c	2025-11-24 13:45:38.024227846 -0500
++++ bug_fix.c	2025-11-24 13:46:10.779737716 -0500
+@@ -4,7 +4,7 @@
+ #include <stdio.h>
+ 
+ size_t encode_record(const record_t *rec, uint8_t *out_buf, size_t out_cap) {
+-    size_t name_len = strlen(rec->name);
++    size_t name_len = strnlen(rec->name, MAX_NAME - 1);
+     size_t space = 1 + name_len + 1 + 4 + 2 * rec->score_count;
+ 
+     if (!out_buf) return space;
